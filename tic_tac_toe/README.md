@@ -16,16 +16,12 @@ This function takes a number from 0 - 8 (inclusive) and places an **X** or an **
 in that position.
 
 If the turn is successful the function returns `true`. Otherwise it returns `undefined`.
-
-> Next time I need to avoid global variables and such strange returns.
-
 This allows the __AI__ to randomly try turns and recognize when it's successful.
 
 `pressed(id)` also switches the global player flag `nextMove` which is a side effect of success.
 
 > This game is simple enough for the side effects to not make the program too confusing.
-> I will avoid doing this in the next project.
-
+> Next time I need to avoid global variables and such random returns from functions.
 
 #### Simple game loop
 

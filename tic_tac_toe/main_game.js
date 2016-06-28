@@ -2,20 +2,24 @@
  * Created by Spyr1014 on 27/06/2016.
  */
 // State of board
-  // Keeps track of what numbers the x and o is on.
+  // gameData keeps track of where X and O's are.
 var gameData = {};
 gameData.O = new Set([]);
 gameData.X = new Set([]);
 
-// If nextMove is true = 'x' else 'o'
+// nextMove true = 'x' else 'o'
 var nextMove = true;
-// Global state of WON.
+
+// global variable tracking win status.
 var WON = false;
+
 // AI on or off
 var AI = false;
-var AImoving = false;
 
-
+/**
+ * Turns on AI.
+ * If it's AI's turn ('O'), then plays Ai's turn.
+ */
 function aiOn() {
   AI = true;
   if (!nextMove){
@@ -23,36 +27,40 @@ function aiOn() {
   }
 }
 
+/**
+ * Plays the AI's turn.
+ */
 function aiAction(){
   var winningMove;
   var randomNumber;
-  // Freeze game for player...
-  AImoving = true;
+
   winningMove = aiCheckPosition('O');
   blockingMove = aiCheckPosition('X');
-  AImoving = false;
   if (winningMove != undefined){
     pressed(winningMove);
   } else if (blockingMove != undefined) {
     pressed(blockingMove)
   } else {
-      while(!WON){
-      randomNumber =getRandomInt(0, 8);
-      console.log(randomNumber);
+      while(!WON){ // Prevents infinite loop when game finishes.
+      randomNumber = getRandomInt(0, 8);
       if (pressed(randomNumber)){
-        break;
+        break; // breaks loop with successful play.
       }
     }
   }
-  return undefined;
 }
 
 function aiOff(){
   AI = false;
 }
 
+/**
+ *
+ * @param {string} player Accepts 'X' or 'O' as player to check the win condition of.
+ * @returns {Number}
+ */
 function aiCheckPosition(player){
-  // Look at where to press
+  // Win conditions
   var WIN = ['012', '345', '678', '036', '147', '258', '048', '246'];
   var winningMove;
   for (var i = 0; i < WIN.length; i++){
@@ -66,17 +74,16 @@ function aiCheckPosition(player){
 
 function checkPos(numbersString, player){
   var winnings = numbersString.split("");
+  var results = [];
   winnings = winnings.map(Number);
-  var results = [3];
   for (var i = 0; i < winnings.length; i++) {
-    if (gameData[player].has(winnings[i])) {
-      results[0] -= 1;
-    } else {
+    if (!gameData[player].has(winnings[i])) {
       results.push(winnings[i]);
     }
   }
-  if (results[0] == 1 && !gameData.X.has(results[1]) && !gameData.O.has(results[1])){
-    return results[1];
+  // checks if only 1 option to win or block.
+  if (results.length == 1 && !gameData.X.has(results[1]) && !gameData.O.has(results[1])){
+    return results[0];
   } else {
     return undefined;
   }
@@ -190,7 +197,7 @@ function resetGame(){
   var cell;
   for (var i = 0; i < viewGrid.length; i++){
     cell = viewGrid[i];
-    if (i%2 == 1){
+    if (i % 2 == 1){
       cell.style.backgroundColor = "#bcbcbc";
     } else {
       cell.style.backgroundColor = "#e8e8e8";
@@ -205,7 +212,6 @@ function resetGame(){
 
 /**
  * Returns a random integer between min (inclusive) and max (inclusive)
- * Using Math.round() will give you a non-uniform distribution!
  */
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
