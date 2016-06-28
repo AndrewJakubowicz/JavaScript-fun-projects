@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+}
+
+div {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+#table {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+}
+
+#table div{
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+}
+
+#table div:nth-child(odd){
+    background-color: #e8e8e8;
+}
+
+#table div:nth-child(even){
+    background-color: #bcbcbc;
+}
