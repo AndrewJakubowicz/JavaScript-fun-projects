@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mocha tests</title>
+
+    <link rel="stylesheet" media="all" href="libraries/mocha.css">
+</head>
+<body>
+    <div id="mocha"><p><a href=".">Index</a></p></div>
+    <div id="messages"></div>
+    <div id="fixtures"></div>
+
+    <script src="libraries/mocha.js"></script>
+    <script src="libraries/chai.js"></script>
+    <script src="libraries/sinon-chai.js"></script>
+    <script src="libraries/sinon-1.17.3.js"></script>
+
+    <!--My own scripts here-->
+
+
+    <script>mocha.setup('bdd')</script>
+
+    <!--My tests scripts here-->
+
+
+    <script>mocha.run();</script>
+</body>
+</html>
