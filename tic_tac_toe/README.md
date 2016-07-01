@@ -1,6 +1,7 @@
 # Tic Tac Toe
 
 I wrote this quick tic tac toe game to see how much I had improved.
+I also wrote this to compare it to the tdd version of this game that I'd put together after the code retreat.
 
 Game features
 
