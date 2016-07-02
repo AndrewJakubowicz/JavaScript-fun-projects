@@ -7,7 +7,7 @@
     <link rel="stylesheet" media="all" href="libraries/mocha.css">
 </head>
 <body>
-    <div id="mocha"><p><a href=".">Index</a></p></div>
+    <div id="mocha"></div>
     <div id="messages"></div>
     <div id="fixtures"></div>
 
@@ -17,12 +17,12 @@
     <script src="libraries/sinon-1.17.3.js"></script>
 
     <!--My own scripts here-->
-
+    <script src="../js/board.js"></script>
 
     <script>mocha.setup('bdd')</script>
 
     <!--My tests scripts here-->
-
+    <script src="board_test.js"></script>
 
     <script>mocha.run();</script>
 </body>
